@@ -164,7 +164,7 @@ def home_page(user):
     image = Image.open(uploaded)
     col1, col2 = st.columns(2)
     with col1:
-        st.image(image, caption="Uploaded image", width="stretch")
+        st.image(image, caption="Uploaded image", use_column_width=True)
 
     with st.spinner("Analyzing image..."):
         predictions = predict_image(image, top_k=3)
@@ -214,7 +214,7 @@ def history_page(user):
             c1, c2 = st.columns([1, 2])
             with c1:
                 if r["image_path"] and os.path.exists(r["image_path"]):
-                    st.image(r["image_path"], width="stretch")
+                    st.image(r["image_path"], use_column_width=True)
             with c2:
                 label = r["predicted_class"].replace("_", " ")
                 if r["confidence"] < 0.50:
