@@ -97,27 +97,48 @@ def auth_page():
 # ---------------------------------------------------------------- top bar
 def top_bar(user=None):
     """Fixed header shown on every page. Brand is always at the same spot."""
+
     left, right = st.columns([3, 1])
+
     with left:
-        st.markdown('<div class="brand">🩺 SkinDiseaseAI</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="brand">🩺 SkinDiseaseAI</div>',
+            unsafe_allow_html=True
+        )
+
     if user is None:
         st.divider()
         return
+
     with right:
-        with st.popover(f"👤 {user['username']}", width="stretch"):
+        with st.popover(f"👤 {user['username']}"):
             st.caption(user["email"])
-            if st.button("🏠 Analyze", width="stretch", key="nav_home"):
+
+            if st.button(
+                "🏠 Analyze",
+                use_container_width=True,
+                key="nav_home"
+            ):
                 st.session_state.view = "home"
                 st.rerun()
-            if st.button("🕘 Past data", width="stretch", key="nav_hist"):
+
+            if st.button(
+                "🕘 Past data",
+                use_container_width=True,
+                key="nav_hist"
+            ):
                 st.session_state.view = "history"
                 st.rerun()
-            if st.button("🚪 Sign out", width="stretch", key="nav_out"):
+
+            if st.button(
+                "🚪 Sign out",
+                use_container_width=True,
+                key="nav_out"
+            ):
                 logout()
                 st.rerun()
+
     st.divider()
-
-
 # ---------------------------------------------------------------- home page
 def render_result(predictions):
     top_class, top_prob = predictions[0]
