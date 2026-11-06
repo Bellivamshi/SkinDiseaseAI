@@ -96,7 +96,7 @@ def auth_page():
 
 # ---------------------------------------------------------------- top bar
 def top_bar(user=None):
-    """Fixed header shown on every page. Brand is always at the same spot."""
+    """Header shown on every page."""
 
     left, right = st.columns([3, 1])
 
@@ -114,27 +114,15 @@ def top_bar(user=None):
         with st.popover(f"👤 {user['username']}"):
             st.caption(user["email"])
 
-            if st.button(
-                "🏠 Analyze",
-                use_container_width=True,
-                key="nav_home"
-            ):
+            if st.button("🏠 Analyze", key="nav_home"):
                 st.session_state.view = "home"
                 st.rerun()
 
-            if st.button(
-                "🕘 Past data",
-                use_container_width=True,
-                key="nav_hist"
-            ):
+            if st.button("🕘 Past data", key="nav_hist"):
                 st.session_state.view = "history"
                 st.rerun()
 
-            if st.button(
-                "🚪 Sign out",
-                use_container_width=True,
-                key="nav_out"
-            ):
+            if st.button("🚪 Sign out", key="nav_out"):
                 logout()
                 st.rerun()
 
