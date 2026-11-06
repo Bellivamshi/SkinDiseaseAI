@@ -69,7 +69,7 @@ def auth_page():
         with st.form("login_form"):
             username = st.text_input("Username")
             password = st.text_input("Password", type="password")
-            submitted = st.form_submit_button("Log in", width="stretch")
+            submitted = st.form_submit_button("Log in", use_container_width=True)
         if submitted:
             user = db.authenticate(username, password)
             if user:
@@ -85,7 +85,7 @@ def auth_page():
             email = st.text_input("Email")
             pw1 = st.text_input("Password (min 6 characters)", type="password")
             pw2 = st.text_input("Confirm password", type="password")
-            created = st.form_submit_button("Create account", width="stretch")
+            created = st.form_submit_button("Create account", use_container_width=True)
         if created:
             if pw1 != pw2:
                 st.error("Passwords do not match.")
